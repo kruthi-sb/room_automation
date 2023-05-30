@@ -1,16 +1,20 @@
 '''
 start date: 28.05.23
-end date: in progress
+end date: at completion on 30.05.23
 
 my practical project on room automation
 requirements:
 1. relay board
-2. lights(2)
+2. lights(1)
 3. ultrasonic sensor(2)
 
 concept:
-when it is the night time and the sensor detects any object near the door
-the lights turn on
+sensor 1 is always on
+when it is the night time and the sensor 1 detects any object near the door
+if anything detected by sensor 1, verify it with sensor 2
+if sensor 2 also detects something, turn on the lights
+count the number of people in the room on every detection of sensor 2
+if the number of people in the room is 0, turn off the lights
 
 '''
 
@@ -28,7 +32,7 @@ ECHO_PIN_2 = 19
 
 # light pins with respect to relay board
 light_2 = 38
-light_3 = 36
+#light_3 = 36
 
 # GPIO BCM– The BCM option refers to the pin by “Broadcom SOC Channel. They signify the Broadcom SOC channel designation.
 GPIO.setmode(GPIO.BOARD)
@@ -41,11 +45,11 @@ GPIO.setup(ECHO_PIN_2, GPIO.IN)
 
 # setup output pins for lights
 GPIO.setup(light_2, GPIO.OUT)
-GPIO.setup(light_3, GPIO.OUT)
+#GPIO.setup(light_3, GPIO.OUT)
 
 # turn off lights first
 GPIO.output(light_2, GPIO.HIGH)
-GPIO.output(light_3, GPIO.HIGH)
+#GPIO.output(light_3, GPIO.HIGH)
 print("Everything set up")
 
 # conventions
@@ -132,7 +136,7 @@ if now.tm_hour <= 18 and now.tm_hour <= 1:
                     print("ENTERED ROOM")
                     print("Turning on the lights.")
                     GPIO.output(light_2, GPIO.LOW)
-                    GPIO.output(light_3, GPIO.LOW)
+                    #GPIO.output(light_3, GPIO.LOW)
                     count += 1
                     print(" count shld be 1 = ", count)
                     break # break the loop if any value is less than 150
@@ -147,22 +151,31 @@ if now.tm_hour <= 18 and now.tm_hour <= 1:
                     print("SOMEONE LEFT THE ROOM")
                     count -= 1
                     print("now, count = ", count )
-                    pass
 
+                elif i > 150 and count == 0: 
+                    # no detection in sensor_2, but count is 0, so no one inside
+                    print("SOMEONE WAS ALREADY IN THE ROOM")
+                    print("THEY LEFT ROOM")
+                    print("MAKING SURE LIGHTS ARE OFF")
+                    GPIO.output(light_2, GPIO.HIGH)
+                    #GPIO.output(light_3, GPIO.HIGH)
+                
                 elif i > 150 and count == 1:
                     # no detection in sensor_2, but count WAS only 1,  turn off the lights
                     print("NO ONE IN THE ROOM")
                     print("LEFT ROOM")
                     print("Turning off the lights.")
                     GPIO.output(light_2, GPIO.HIGH)
-                    GPIO.output(light_3, GPIO.HIGH)
+                    #GPIO.output(light_3, GPIO.HIGH)
                     count -= 1
 
         time.sleep(2)
 
 # its not night time!!
 else:
-
+    #clean up the GPIO pins
+    GPIO.cleanup()
     print("\n\n IT IS NOT NIGHT TIME!!!")
+    exit()
  
 
