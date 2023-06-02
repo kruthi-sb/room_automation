@@ -1,5 +1,5 @@
 # ROOM AUTOMATION
-EMERGENCY CODE TO STOP SERVICE:
+*EMERGENCY CODE TO STOP SERVICE:*
 `sudo systemctl stop room_lights`
 
 ## DESCRIPTION
@@ -12,26 +12,38 @@ This project aims to build an automatic light control system for a room. The sys
 4. Jumper Wires
 5. Power Supply for Raspberry Pi (5V, 2.5A recommended)
 
-## CIRCUIT DIAGRAM
-![Circuit Diagram](Wiring Diagram Room Automation.jpg)
+## WIRING DIAGRAM
+Refer the wiring diagram in the files
 
 ## WORKING
-The ultrasonic sensors[1] are used to detect the entry and exit of a person. The 2 sensors are placed beside each other. Let's say the one near to the door is SENSOR 1 and the other one is SENSOR 2. The SENSOR 1 is always kept ON. 
+The [ultrasonic sensors](https://lastminuteengineers.com/arduino-sr04-ultrasonic-sensor-tutorial/) are used to detect the entry and exit of a person. The 2 sensors are placed beside each other. Let's say the one near to the door is SENSOR 1 and the other one is SENSOR 2. The SENSOR 1 is always kept ON. 
 - ENTRY:
 When a person enters the room, SENSOR 1 detects the person and inturn triggers SENSOR 2. The SENSOR 2 verifies the entry of the person and turns on the light.
 - EXIT:
 When the person exits the room, SENSOR 1 detects the person and inturn triggers SENSOR 2. But, the SENSOR 2 doesn't catch the person as he/she has already exited the room. So, the light turn off.
 - COUNT:
 This count is used to determine the number of people in the room.
-At each trigger of SENSOR 2, the count is incremented by 1.
-At each trigger of SENSOR 1, but NO trigger of SENSOR 2, the count is decremented by 1. 
+    At each trigger of SENSOR 2, the count is incremented by 1.
+    At each trigger of SENSOR 1, but NO trigger of SENSOR 2, the count is decremented by 1. 
 
 ## GPIO PINS
-SENSOR 1:           SENSOR 2:           RELAY:          
-GND 1 - 14          GND 2 - 9           GND OUT - 6
-ECHO 1 - 5          ECHO 2 - 19         VCC 5V - 2
-TRIG 1 - 12         TRIG 2 - 10         IN2 - 38
-VCC - 4             VCC - 4             GND IN - 34
+- *SENSOR 1:*          
+GND 1 - 14         
+ECHO 1 - 5          
+TRIG 1 - 12         
+VCC - 4    
+
+- *SENSOR 2:*                    
+GND 2 - 9          
+ECHO 2 - 19          
+TRIG 2 - 10         
+VCC - 4   
+
+- *RELAY:*          
+GND OUT - 6     
+VCC 5V - 2
+IN2 - 38
+GND IN1 - 34
 
 ## CODE GUIDE
 - Refer `my_plan2.py` file for the final working code. 
@@ -120,9 +132,7 @@ By default, the output of the service is directed to the system journal. To view
 The logs will include both standard output and standard error messages.
 
 ## REFERENCES
-[1]: https://lastminuteengineers.com/arduino-sr04-ultrasonic-sensor-tutorial/
-
-### About Ultrasonic sensor HC-SR04 physics:
+About Ultrasonic sensor HC-SR04 physics:
 
 Ultrasonic sensors work based on the principle of echolocation. 
 Here's a high-level overview of how ultrasonic sensors typically work:
@@ -151,6 +161,6 @@ Here's a high-level overview of how ultrasonic sensors typically work:
 - Use `sudo systemctl start room_lights` to start the service.
 
 ## CREDITS
-Thanks to ChatGPT for helping with linux commands and troubleshooting.
-Thanks to Me for finding out the logic for the system.
-Thanks to Github Copilot for helping with the README.md file.
+- Thanks to ChatGPT for helping with linux commands and troubleshooting.
+- Thanks to Me for finding out the logic for the system.
+- Thanks to Github Copilot for helping with the README.md file.
