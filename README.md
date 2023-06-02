@@ -84,10 +84,10 @@ Some already explored-but-failed methods are rc.local and crontab. The best meth
 
 Using Systemd service: You can create a systemd service unit to run your Python script at startup. Systemd is a modern init system used in many Linux distributions, including Raspberry Pi OS.
 
-1. Create a systemd service unit file:
+1. Create a systemd service unit file:                                          
 `sudo nano /etc/systemd/system/room_lights.service`
 
-2. In the text editor, enter the following content for the service unit file:
+2. In the text editor, enter the following content for the service unit file:                             
 
 ```
 [Unit]
@@ -108,29 +108,29 @@ WantedBy=multi-user.target
 
 3. Save the file by pressing Ctrl+O, then exit the text editor by pressing Ctrl+X.
 
-4. Set the correct permissions for the service unit file:
+4. Set the correct permissions for the service unit file:                          
 `sudo chmod 644 /etc/systemd/system/room_lights.service`
 
-5. Enable the service to start at boot:
+5. Enable the service to start at boot:                                    
 `sudo systemctl enable room_lights.service`
 
-6. Start the service manually to test:
+6. Start the service manually to test:                                        
 `sudo systemctl start room_lights`
 
-7. Check the status of the service to verify it's running without errors:
+7. Check the status of the service to verify it's running without errors:                                   
 `sudo systemctl status room_lights`
 
-8. Reboot the Raspberry Pi and check the status of the service again to verify it starts automatically:
-`sudo reboot`
-`sudo systemctl status room_lights`
+8. Reboot the Raspberry Pi and check the status of the service again to verify it starts automatically:                           
+`sudo reboot`                           
+`sudo systemctl status room_lights`                     
 
-9. To stop the service:
+9. To stop the service:                           
 `sudo systemctl stop room_lights`
 
 ### Output from systemd service:
-By default, the output of the service is directed to the system journal. To view the output, use
-`sudo journalctl -u room_lights`
-The logs will include both standard output and standard error messages.
+By default, the output of the service is directed to the system journal. To view the output, use                       
+`sudo journalctl -u room_lights`                               
+The logs will include both standard output and standard error messages.                         
 
 ## REFERENCES
 About Ultrasonic sensor HC-SR04 physics:
