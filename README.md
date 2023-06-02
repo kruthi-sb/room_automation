@@ -41,18 +41,18 @@ VCC - 4
 
 - *RELAY:*          
 GND OUT - 6     
-VCC 5V - 2
-IN2 - 38
-GND IN1 - 34
+VCC 5V - 2            
+IN2 - 38      
+GND IN1 - 34             
 
 ## CODE GUIDE
-- Refer `my_plan2.py` file for the final working code. 
-- `my_start.py` file runs the `my_plan2.py` file when time conditions are met. It checks the current time every 5 mins and runs the code if the time is between 18:00 PM and 23:00 PM.
-- `turn_on.py` file is used to turn on the light manually. It includes setting up the GPIO pins and turning on the light.
-- `turn_off.py` file is used to turn off the light manually. It includes setting up the GPIO pins and turning off the light.
+- Refer 'my_plan2.py' file for the final working code. 
+- 'my_start.py' file runs the 'my_plan2.py' file when time conditions are met. It checks the current time every 5 mins and runs the code if the time is between 18:00 PM and 23:00 PM.
+- 'turn_on.py' file is used to turn on the light manually. It includes setting up the GPIO pins and turning on the light.
+- 'turn_off.py' file is used to turn off the light manually. It includes setting up the GPIO pins and turning off the light.
 - Rest of the files are previous versions of the code.
 
-NOTE: `my_plan2.py` code uses GPIO BOARD mode for pin numbering. Refer [this](https://www.raspberrypi.com/documentation/computers/os.html#gpio-and-the-40-pin-header) and [this](https://iot4beginners.com/difference-between-bcm-and-board-pin-numbering-in-raspberry-pi/) for more info.
+NOTE: 'my_plan2.py' code uses GPIO BOARD mode for pin numbering. Refer [this for pin diagram](https://www.raspberrypi.com/documentation/computers/os.html#gpio-and-the-40-pin-header) and [this for modes](https://iot4beginners.com/difference-between-bcm-and-board-pin-numbering-in-raspberry-pi/) for more info.
 
 ## Rasbian OS Commands
 
@@ -62,23 +62,23 @@ NOTE: `my_plan2.py` code uses GPIO BOARD mode for pin numbering. Refer [this](ht
 3. `sudo apt-get install python3-pip`: To install pip3 (python3 package manager)
 4. `sudo pip3 install RPi.GPIO`: To install GPIO library for python3
 
-### To set up `my_plan2.py` code:
-1. `sudo nano my_plan2.py`: To create a new file named `my_plan2.py` and open it in nano editor
-2. Copy the code from `my_plan2.py` file and paste it in the nano editor
+### To set up 'my_plan2.py' code:
+1. `sudo nano my_plan2.py`: To create a new file named 'my_plan2.py' and open it in nano editor
+2. Copy the code from 'my_plan2.py' file and paste it in the nano editor
 3. `Ctrl + O` and `Enter`: To save the file
 4. `Ctrl + X`: To exit the nano editor
 5. `sudo python3 my_plan2.py`: To run the code
 6. `Ctrl + C`: To stop the code
 
 ### To set up 'my_start.py' code:
-1. `sudo nano my_start.py`: To create a new file named `my_start.py` and open it in nano editor
-2. Copy the code from `my_start.py` file and paste it in the nano editor
+1. `sudo nano my_start.py`: To create a new file named 'my_start.py' and open it in nano editor
+2. Copy the code from 'my_start.py' file and paste it in the nano editor
 3. `Ctrl + O` and `Enter`: To save the file
 4. `Ctrl + X`: To exit the nano editor
 5. `sudo python3 my_start.py`: To run the code
 6. `Ctrl + C`: To stop the code
 
-### To set up `my_start.py` code to run at startup:
+### To set up 'my_start.py' code to run at startup:
 Some already explored-but-failed methods are rc.local and crontab. The best method is to use systemd service. 
 
 Using Systemd service: You can create a systemd service unit to run your Python script at startup. Systemd is a modern init system used in many Linux distributions, including Raspberry Pi OS.
