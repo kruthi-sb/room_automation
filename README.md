@@ -17,16 +17,19 @@ Refer the wiring diagram in the files
 
 ## WORKING
 The [ultrasonic sensors](https://lastminuteengineers.com/arduino-sr04-ultrasonic-sensor-tutorial/) are used to detect the entry and exit of a person. The 2 sensors are placed beside each other. Let's say the one near to the door is SENSOR 1 and the other one is SENSOR 2. The SENSOR 1 is always kept ON. 
-- ENTRY:
+- *ENTRY:*
 When a person enters the room, SENSOR 1 detects the person and inturn triggers SENSOR 2. The SENSOR 2 verifies the entry of the person and turns on the light.
-- EXIT:
+- *EXIT:*
 When the person exits the room, SENSOR 1 detects the person and inturn triggers SENSOR 2. But, the SENSOR 2 doesn't catch the person as he/she has already exited the room. So, the light turn off.
-- COUNT:
+- *COUNT:*
 This count is used to determine the number of people in the room.
     At each trigger of SENSOR 2, the count is incremented by 1.
     At each trigger of SENSOR 1, but NO trigger of SENSOR 2, the count is decremented by 1. 
 
 ## GPIO PINS
+
+NOTE: 'my_plan2.py' code uses **GPIO BOARD mode** for pin numbering. Refer [this for pin diagram](https://www.raspberrypi.com/documentation/computers/os.html#gpio-and-the-40-pin-header) and [this for modes](https://iot4beginners.com/difference-between-bcm-and-board-pin-numbering-in-raspberry-pi/).
+
 - *SENSOR 1:*          
 GND 1 - 14         
 ECHO 1 - 5          
@@ -51,8 +54,6 @@ GND IN1 - 34
 - 'turn_on.py' file is used to turn on the light manually. It includes setting up the GPIO pins and turning on the light.
 - 'turn_off.py' file is used to turn off the light manually. It includes setting up the GPIO pins and turning off the light.
 - Rest of the files are previous versions of the code.
-
-NOTE: 'my_plan2.py' code uses GPIO BOARD mode for pin numbering. Refer [this for pin diagram](https://www.raspberrypi.com/documentation/computers/os.html#gpio-and-the-40-pin-header) and [this for modes](https://iot4beginners.com/difference-between-bcm-and-board-pin-numbering-in-raspberry-pi/) for more info.
 
 ## Rasbian OS Commands
 
